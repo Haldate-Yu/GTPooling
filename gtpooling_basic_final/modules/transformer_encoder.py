@@ -156,7 +156,7 @@ class TransformerEncoderLayer(Module):
             x = x.permute(1, 0, 2)
             noise_x = noise_x.permute(1, 0, 2)
 
-            # x = self.norm1(x + self._sa_block(x, src_mask, src_key_padding_mask))
+            x = self.norm1(x + self._sa_block(x, src_mask, src_key_padding_mask))
 
             x = self.norm2(x + self._ff_block(x))
             noise_x = self.norm3(noise_x + self._ff_block(noise_x))
