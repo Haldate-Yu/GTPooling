@@ -196,10 +196,12 @@ class TransformerEncoderLayer(Module):
         # print("cls attn: {}".format(cls_attn.size()))
         cls_attn = cls_attn.sum(dim=1)
 
-        # random drop tokens
+        # drop tokens
         cls_attn = self.dropout_attn(cls_attn)
         left_tokens = math.ceil(self.keep_rate * (N - 1))
         noise_tokens = (N - 1) - left_tokens
+        if noise_tokens == 0:
+            noise_token = 1
         # topk for important tokens
         _, idx = torch.topk(cls_attn, left_tokens, dim=1, largest=True, sorted=True)  # [B, left_tokens]
         index = idx.unsqueeze(-1).expand(-1, -1, C)  # [B, left_tokens, C]
