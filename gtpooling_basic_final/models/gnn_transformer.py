@@ -117,7 +117,7 @@ class GNNTransformer(BaseModel):
 
         if self.pooling in ["last", "cls"]:
             h_graph = transformer_out[-1]
-            noise_h_graph = transformer_noise
+            noise_h_graph = transformer_noise[-1]
         elif self.pooling == "mean":
             h_graph = transformer_out.sum(0) / src_padding_mask.sum(-1, keepdim=True)
             noise_h_graph = transformer_noise.sum(0) / src_padding_mask.sum(-1, keepdim=True)
@@ -132,7 +132,7 @@ class GNNTransformer(BaseModel):
         noise_list = []
         for i in range(self.max_seq_len):
             pred_list.append(self.graph_pred_linear_list[i](h_graph))
-            # noise_list.append(self.graph_pred_linear_list[i](noise_h_graph))
+            noise_list.append(self.graph_pred_linear_list[i](noise_h_graph))
 
         return pred_list, noise_list
 
