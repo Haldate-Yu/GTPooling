@@ -35,7 +35,7 @@ sh run_ogb.sh 0
 sh run_pcba.sh 0
 ```
 Supported datasets:
-- TuDatasets: `NCI1`, `MUTAG`, `PTC-MR`, `NCI109`, `ENZYMES`, `Mutagenicity`, `IMDB-M`, `IMDB-B`
+- TuDataset: `NCI1`, `MUTAG`, `PTC-MR`, `NCI109`, `ENZYMES`, `Mutagenicity`, `IMDB-M`, `IMDB-B`
 - OGB: `ogbg-molhiv`, `ogbg-moltox21`, `ogbg-moltoxcast`, `ogbg-molpcba`
 
 ## Datasets
