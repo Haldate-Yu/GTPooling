@@ -5,7 +5,7 @@ Implementation for paper: Gradformer: Graph Explicit Pooling for Graph-Level Rep
 
 This paper presents GrePool...
 
-**Python environment setup with Conda**
+### Python environment setup with Conda
 
 
 
