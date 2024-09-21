@@ -156,7 +156,7 @@ class TransformerEncoderLayer(Module):
             x = x.permute(1, 0, 2)
             noise_x = noise_x.permute(1, 0, 2)
 
-            # x = self.norm1(x + self._sa_block(x, src_mask, src_key_padding_mask))
+            x = self.norm1(x + self._sa_block(x, src_mask, src_key_padding_mask))
 
             x = self.norm2(x + self._ff_block(x))
             noise_x = self.norm3(noise_x + self._ff_block(noise_x))
@@ -200,6 +200,8 @@ class TransformerEncoderLayer(Module):
         cls_attn = self.dropout_attn(cls_attn)
         left_tokens = math.ceil(self.keep_rate * (N - 1))
         noise_tokens = (N - 1) - left_tokens
+        if noise_tokens == 0:
+            noise_tokens = 1
         # topk for important tokens
         # _, idx = torch.topk(cls_attn, left_tokens, dim=1, largest=True, sorted=True)  # [B, left_tokens]
         # index = idx.unsqueeze(-1).expand(-1, -1, C)  # [B, left_tokens, C]
