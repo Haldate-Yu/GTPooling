@@ -1,2 +1,2 @@
-# GTPooling
-Source Code for GTPooling
+# Graph Explicit Pooling for Graph-Level Representation Learning
+Source Code for GrePool
