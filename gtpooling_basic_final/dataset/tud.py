@@ -40,8 +40,7 @@ class TUUtil:
             loss = F.cross_entropy(pred, batch.y)
             y_uni = torch.ones_like(noise) / (torch.max(batch.y) + 1)
             kl_loss = TUUtil.compute_kl_loss(noise, y_uni)
-            # return loss + uni_rate * kl_loss
-            return loss
+            return loss + uni_rate * kl_loss
 
         return calc_loss
 

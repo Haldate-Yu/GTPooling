@@ -30,8 +30,7 @@ class MolUtil:
             else:
                 loss = reg_criterion(pred.to(torch.float32)[is_labeled], batch.y.to(torch.float32)[is_labeled])
             loss /= m
-            # return loss + uni_rate * kl_loss
-            return loss
+            return loss + uni_rate * kl_loss
 
         return calc_loss
 
