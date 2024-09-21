@@ -2,8 +2,24 @@
 Implementation for paper: Graph Explicit Pooling for Graph-Level Representation Learning
 
 ## Overview
+![overview](./imgs/grepool.png)
+Graph pooling has been increasingly recognized as crucial for Graph Neural Networks (GNNs) to facilitate hierarchical 
+graph representation learning. Existing graph pooling methods commonly consist of two stages: 
+selecting top-ranked nodes and discarding the remaining to construct coarsened graph representations. 
+However, this paper highlights two key issues with these methods: 
 
-This paper presents GrePool...
+**1)** The process of selecting nodes to discard frequently employs additional Graph Convolutional Networks or 
+Multilayer Perceptrons, lacking a thorough evaluation of each node's impact on the final graph representation and 
+subsequent prediction tasks. 
+
+**2)** Current graph pooling methods tend to directly discard the noise segment (dropped) of the graph without accounting 
+for the latent information contained within these elements. 
+
+To address the **first** issue, we introduce a novel <u>Gr</u>aph <u>e</u>xplicit <u>Pool</u>ng (GrePool) method, 
+which selects nodes by explicitly leveraging the relationships between the nodes and final representation vectors crucial 
+for classification. The **second** issue is addressed using an extended version of GrePool (*i.e.*, GrePool+), 
+which applies a uniform loss on the discarded nodes. This addition is designed  to augment the training process and improve 
+classification accuracy. 
 
 ### Python environment setup with Conda
 ```shell
